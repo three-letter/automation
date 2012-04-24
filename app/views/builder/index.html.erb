@@ -1,0 +1,26 @@
+
+<%= form_tag url_for(:controller => "builder", :action => "rebuild"), :remote => "true", :class => "form-horizontal", :id => "operate_build_form" do %>
+  <fieldset>
+    <legend>索引/增量的重建</legend>
+    <div id="operate_build_area">
+    <div class="control-group">
+      <label class="control-label" for="input01">选择操作类型</label>
+      <div class="controls">
+        <%= select_tag("operate_type", options_for_select([['',0], ['新建节目',1], ['节目添加正片',2], ['屏蔽正片',3], ['新建/修改人物',4]], 0) ,:class => "span3") %>
+      </div>
+    </div>
+
+    <div class="control-group hide" id="operate_video">
+    <label class="control-label" for="input01">输入节目ID</label>
+    <div class="controls">
+      <%= text_field_tag "operate_video_id", "", :class => "input-large" %>
+    </div>
+    </div>
+
+    <div class="form-actions">
+    <button id="operate_build_btn" class="btn btn-primary" type="button">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </div>
+  </fieldset>
+<% end %>
