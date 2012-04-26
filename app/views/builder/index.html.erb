@@ -11,12 +11,27 @@
     </div>
 
     <div class="control-group hide" id="operate_video">
-    <label class="control-label" for="input01">输入节目ID</label>
-    <div class="controls">
-      <%= text_field_tag "operate_video_id", "", :class => "input-large" %>
+      <label class="control-label" for="input01">输入节目ID</label>
+      <div class="controls">
+        <%= text_field_tag "operate_video_id", "", :class => "input-large" %>
+      </div>
     </div>
+  
+    <div class="control-group">
+      <label class="control-label" for="input01">选择操作范围</label>
+      <div class="controls">
+        <label class="radio inline">
+          <%= radio_button_tag  "operate_area", 1 %>索引增量
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag  "operate_area", 2 %>同步节目信息
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag  "operate_area", 3,:checked => true %>全部
+        </label>
+      </div>
     </div>
-
+    
     <div class="form-actions">
     <button id="operate_build_btn" class="btn btn-primary" type="button">确定</button>
     <button class="btn">取消</button>

@@ -13,6 +13,7 @@ class BuilderController < ApplicationController
   def rebuild
     type = params[:operate_type].to_i
     video_id = params[:operate_video_id]
+    area = params[:operate_area]
     respond_to do |format|
       if (type == 0)
         flash[:notice] = "操作类型不能为空!"
@@ -23,7 +24,7 @@ class BuilderController < ApplicationController
           flash[:notice] = "节目ID不能为空!"
           format.js
         else
-          flash[:notice] = IndexBuilder.build(params[:operate_type], params[:operate_video_id])
+          flash[:notice] = IndexBuilder.build(type, video_id, area)
           #format.html{redirect_to action:"index"}
           format.js
         end
