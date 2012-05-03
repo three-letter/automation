@@ -1,0 +1,11 @@
+
+<table class="table">
+  <tbody>
+    <% @video_ids.each_with_index do |video_id, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= video_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

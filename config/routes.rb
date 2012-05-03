@@ -1,4 +1,6 @@
 Automation::Application.routes.draw do
+  get "video_id/show"
+
   get "builder/index"
 
   # The priority is based upon order of creation:

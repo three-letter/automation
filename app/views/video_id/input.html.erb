@@ -1,0 +1,30 @@
+
+<%= form_tag url_for(:controller => "video_id", :action => "show"), :class => "form-horizontal", :id => "operate_build_form" do %>
+  <fieldset>
+    <legend>视频ID查询</legend>
+    <div id="operate_build_area">
+
+    <div class="control-group">
+      <label class="control-label" for="input01">输入分类和过滤条件</label>
+      <div class="controls">
+        <%= text_field_tag "filter_str", "", :class => "input-large", :placeholder => "全部 今日 最多播放" %>
+        <p class="help-block">
+          第一个为分类,其他的为该分类下过滤条件以空格分开 例: 综艺 大陆
+        </p>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">输入页数</label>
+      <div class="controls">
+        <%= text_field_tag "page", "1", :class => "input-large" %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </div>
+  </fieldset>
+<% end %>

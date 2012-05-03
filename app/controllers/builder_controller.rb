@@ -1,5 +1,5 @@
 #coding: utf-8
-require "/home/halsey/work/ruby/rails/automation/lib/rebuild/index_builder.rb"
+require File.expand_path("../../../lib/rebuild/index_builder", __FILE__)
 
 class BuilderController < ApplicationController
   #索引重构的操作页
