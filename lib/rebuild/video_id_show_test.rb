@@ -61,7 +61,6 @@ class VideoIdShow
 			begin
 				type_link = tree.link(:text, type)
 				type_link.click unless tree.span(:text, type).exists?
-        b.wait
 			rescue
 				b.close
 				return "不存在的视频分类:\"#{type}\""
@@ -70,8 +69,7 @@ class VideoIdShow
 			if size > 1
 				filter_area = b.div(:id, "filter")
         fh = filter_area.div(:id, "filter_handle")
-        fh.click if (fh.attribute_value("style") != "display: none;" && filter_area.class_name == "filter")
-        b.wait
+        fh.click if (fh.attribute_value("style") != "display: none;" && filter_area.class_name == "filter") 
 				1.upto(size-1) do |i|
 					filter = filters[i]
 					puts filter
@@ -137,6 +135,6 @@ class VideoIdShow
 	
 	end
 #### 定义类方法 end ####
-
+  puts generate_url("电影 付费")
 end
 

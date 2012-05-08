@@ -1,11 +1,18 @@
 
-<table class="table">
-  <tbody>
-    <% @video_ids.each_with_index do |video_id, index| %>
-      <tr>
-        <td><%= index+1 %></td>
-        <td><%= video_id %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if @video_ids.size==1 %>
+  <div class="alert">
+    <a class="close" data-dismiss="alert" href="/video_id/input">×</a>
+    <%= @video_ids[0] %>
+  </div>
+<% else %>
+  <table class="table">
+    <tbody>
+      <% @video_ids.each_with_index do |video_id, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= video_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
