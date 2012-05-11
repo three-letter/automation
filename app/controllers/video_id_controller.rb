@@ -1,4 +1,6 @@
+#coding: utf-8
 require File.expand_path("../../../lib/rebuild/video_id_show", __FILE__) 
+require 'juggernaut'
 
 class VideoIdController < ApplicationController
   
@@ -14,6 +16,7 @@ class VideoIdController < ApplicationController
   def show
     filter_str = params[:filter_str]
     page = params[:page].to_i
+    Juggernaut.publish("/video_ids/msg", "您有新消息!");
     respond_to do |format|
       if(filter_str.nil? || page.nil?)
         format.html{redirect_to action:"input"}

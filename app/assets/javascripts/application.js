@@ -16,7 +16,8 @@
 //= require_tree .
 
 $(document).ready(function(){ 
-  //选择索引重建的类型
+  
+    //选择索引重建的类型
   $("#operate_type").change(function(){
     var type = $(this).val();
     if(type>0 && type<3)
@@ -24,12 +25,24 @@ $(document).ready(function(){
     else
       $("#operate_video").hide();
   });
+  
   //ajax方式重建索引
   $("#operate_build_btn").click(function(){
     $("#operate_build_form").submit();
     var build_html = '<div style="width:200px;" class="progress progress-striped active"><div class="bar" style="width: 100%;">索引重建中,请稍后...</div></div>';
     $("#operate_build_area").html(build_html);
   });
+  
+  //若有消息则右上角显示信封
+  //var jug = new Juggernaut;
+  //jug.subscribe("/video_ids/msg", function(data){
+    //  alert(2);
+    //if(data != null && data.length>0){
+    //  $("#msg-area").html("<font>"+data+"</font>");
+   // }
+   // alert(3);
+  //});
+
 });
 
 
