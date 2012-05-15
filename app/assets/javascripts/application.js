@@ -34,14 +34,12 @@ $(document).ready(function(){
   });
   
   //若有消息则右上角显示信封
-  //var jug = new Juggernaut;
-  //jug.subscribe("/video_ids/msg", function(data){
-    //  alert(2);
-    //if(data != null && data.length>0){
-    //  $("#msg-area").html("<font>"+data+"</font>");
-   // }
-   // alert(3);
-  //});
+  var jug = new Juggernaut;
+  jug.subscribe("/video_ids/msg", function(data){
+    if(data != null && data.length>0){
+      $("#msg-area").html("<font>"+data+"</font>");
+    }
+  });
 
 });
 

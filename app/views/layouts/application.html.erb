@@ -73,14 +73,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-<script type="text/javascript" charset="utf-8">
-
-    var jug = new Juggernaut();
-
-    jug.subscribe("/video_ids/msg", function(data){
-    $("#msg-area").html(data);      
-  });
-</script>
 
   </body>
 </html>
