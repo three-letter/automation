@@ -35,7 +35,7 @@ class VideoIdShow
 			base_url = generate_url filter_str
 			url_array << base_url
 			if (page > 1 && is_url(base_url))
-				b = Watir::Browser.new :ie
+				b = Watir::Browser.new :firefox
 				b.goto base_url
 				page_area = b.ul(:class, "pages")
 				2.upto(page) do |p|
@@ -114,19 +114,21 @@ class VideoIdShow
 
 		#根据节目url获取最新的视频ID
 		def get_latest_video_id url
-			video_id = ""
+			video_id, href = "", ""
 			doc = Hpricot(open(url))
       #电视剧形式播放链接
       doc.search("li[@class=playbtn arrow]/a") do |a|
 				href = a.attributes["href"]
-				video_id = get_id_by_video_url href
+				break
 			end
-      return video_id unless video_id.empty?
+			video_id = get_id_by_video_url href
+      return video_id unless (video_id.nil? || video_id.empty?)
       #电影综艺大按钮形式播放链接
 			doc.search("li[@class=action]/a") do |a|
 				href = a.attributes["href"]
-				video_id = get_id_by_video_url href
+				break
 			end
+			video_id = get_id_by_video_url href
 			video_id
 		end
 
