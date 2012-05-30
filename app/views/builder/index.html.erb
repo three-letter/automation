@@ -3,10 +3,12 @@
   <fieldset>
     <legend>索引重建</legend>
     <div id="operate_build_area">
+    
+
     <div class="control-group">
       <label class="control-label" for="input01">选择操作类型</label>
       <div class="controls">
-        <%= select_tag("operate_type", options_for_select([['',0], ['新建节目',1], ['节目添加正片',2], ['屏蔽正片',3], ['新建/修改人物',4]], 0) ,:class => "span3") %>
+        <%= select_tag("operate_type", options_for_select(@rebuild.type_list) ,:class => "span3") %>
       </div>
     </div>
 

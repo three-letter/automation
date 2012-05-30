@@ -4,6 +4,7 @@ require File.expand_path("../../../lib/rebuild/index_builder", __FILE__)
 class BuilderController < ApplicationController
   #索引重构的操作页
   def index
+    @rebuild = Rebuild.new
     respond_to do |format|
       format.html
     end
@@ -11,24 +12,11 @@ class BuilderController < ApplicationController
 
   #根据请求重构对应的索引
   def rebuild
-    type = params[:operate_type].to_i
-    video_id = params[:operate_video_id]
-    area = params[:operate_area]
-    respond_to do |format|
-      if (type == 0)
-        flash[:notice] = "操作类型不能为空!"
-        #format.html{render action:"index"}
-        format.js
-      else
-        if(video_id.blank? && type < 3)
-          flash[:notice] = "节目ID不能为空!"
-          format.js
-        else
-          flash[:notice] = IndexBuilder.build(type, video_id, area)
-          #format.html{redirect_to action:"index"}
-          format.js
-        end
-      end
+    valid_msg = @rebuild.check_validate
+    if valid_msg.empty?
+      flash[:notice] = @rebuild.rebuild_index
+    else
+      flash[:notice] = msg
     end
   end
 
