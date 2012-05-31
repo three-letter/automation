@@ -24,10 +24,10 @@ module RemoteSsh
 ##节目信息同步的所有关联脚本 video_*
     
     #更新节目需异步更新的字段数据
-    def video_makestat(id) 
+    def video_makestat(id, eid) 
       build_info = ""
       Net::SSH.start(@@host, @@user, :password => @@pwd, :port => @@port) do |ssh|
-        build_info = ssh.exec!("cd /opt/indexbuilder/code/fd/builder/show && php makestat.php -i " + id + " "+ id )
+        build_info = ssh.exec!("cd /opt/indexbuilder/code/fd/builder/show && php makestat.php -i " + id + " "+ eid )
       end
       build_info
     end

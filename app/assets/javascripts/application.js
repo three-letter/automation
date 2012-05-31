@@ -17,15 +17,37 @@
 
 $(document).ready(function(){ 
   
-    //选择索引重建的类型
+  //选择索引重建的类型
   $("#operate_type").change(function(){
     var type = $(this).val();
-    if(type>0 && type<3)
-      $("#operate_video").show();
+    $("#type").val(type);
+    if(type == "video.show")
+      $("#type_hide").show();
     else
-      $("#operate_video").hide();
+      $("#type_hide").hide();
   });
   
+  //视频子类型的赋值
+  $("*[name='type_video']").each(function(){
+    $(this).click(function(){
+      var type = $(this).val();
+      $("#type").val(type);
+    });
+  });
+
+  //待更新字段的节目起始ID赋值
+  $("*[name='state_c']").each(function(){
+    $(this).click(function(){
+      var state = $(this).val();
+      if(state == 0){
+        $("#state").val("");
+        $("#state").hide();
+      }else{
+        $("#state").show();
+      }
+    });    
+  });
+
   //ajax方式重建索引
   $("#operate_build_btn").click(function(){
     $("#operate_build_form").submit();

@@ -2,7 +2,7 @@
 <% if @video_ids.size==1 %>
   <div class="alert">
     <a class="close" data-dismiss="alert" href="/video_id/input">×</a>
-    <%= @video_ids[0] %>
+    <%= @video_ids[0] %> 
   </div>
 <% else %>
   <table class="table">
@@ -11,6 +11,7 @@
         <tr>
           <td><%= index+1 %></td>
           <td><%= video_id %></td>
+          <td><%= vid_decode video_id %></td>
         </tr>
       <% end %>
     </tbody>

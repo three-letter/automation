@@ -3,7 +3,7 @@
   <fieldset>
     <legend>索引重建</legend>
     <div id="operate_build_area">
-    
+    <%= hidden_field_tag :type %> 
 
     <div class="control-group">
       <label class="control-label" for="input01">选择操作类型</label>
@@ -11,29 +11,59 @@
         <%= select_tag("operate_type", options_for_select(@rebuild.type_list) ,:class => "span3") %>
       </div>
     </div>
-
-    <div class="control-group hide" id="operate_video">
-      <label class="control-label" for="input01">输入节目ID</label>
+    
+    <div class="control-group hide" id="type_hide">
       <div class="controls">
-        <%= text_field_tag "operate_video_id", "", :class => "input-large" %>
+          <%= radio_button_tag "type_video", "video.show", :checked => true %>节目
+          <%= radio_button_tag "type_video", "video.dvd"%>DVD
+          <%= radio_button_tag "type_video", "video.today"%>今日
+          <%= radio_button_tag "type_video", "video.month_1"%>本月
+          <%= radio_button_tag "type_video", "video.hot"%>热点
+          <%= radio_button_tag "type_video", "video.cms"%>CMS
+          <%= radio_button_tag "type_video", "video.user"%>用户
       </div>
     </div>
-  
+
     <div class="control-group">
-      <label class="control-label" for="input01">选择操作范围</label>
+      <label class="control-label" for="input01">更新节目字段</label>
       <div class="controls">
         <label class="radio inline">
-          <%= radio_button_tag  "operate_area", 1 %>索引增量
+          <%= radio_button_tag  "state_c", 0, :checked => "checked" %>否
         </label>
         <label class="radio inline">
-          <%= radio_button_tag  "operate_area", 2 %>同步节目信息
+          <%= radio_button_tag  "state_c", 1 %>是
         </label>
         <label class="radio inline">
-          <%= radio_button_tag  "operate_area", 3,:checked => true %>全部
         </label>
+        <%= text_field_tag :state, "", :class => "input", :placeholder => "请输入节目ID", :style => "display:none" %>
       </div>
     </div>
     
+    <div class="control-group">
+      <label class="control-label" for="input01">更新视频状态</label>
+      <div class="controls">
+        <label class="radio inline">
+          <%= radio_button_tag  "flag", 0, :checked => "checked" %>否
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag  "flag", 1 %>是
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">更新视频分类</label>
+      <div class="controls">
+        <label class="radio inline">
+          <%= radio_button_tag  "category", 0, :checked => "checked" %>否
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag  "category", 1 %>是
+        </label>
+      </div>
+    </div>
+
+
     <div class="form-actions">
     <button id="operate_build_btn" class="btn btn-primary" type="button">确定</button>
     <button class="btn">取消</button>
