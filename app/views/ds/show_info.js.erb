@@ -1,0 +1,3 @@
+var info = "<%= flash[:info] %>";
+info = info.replace(new RegExp("&quot;","gm"), "\"");
+$("#data").val(info);

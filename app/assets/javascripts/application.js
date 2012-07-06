@@ -61,6 +61,16 @@ $(document).ready(function(){
       if(data!=null && data.length>0)
 				$("#msg-area").html("<a href='#' class='brand'>"+data+"</a>");
   });
+  
+  //ajax方式查询中间层节目信息
+  $("#ds_show_input").blur(
+    function(){
+    var show_id = $("#ds_show_input").val();
+    if(show_id.length == 0)
+      alert("节目ID不能为空！");
+    else
+      $("#ds_show_input_form").submit();
+  });
 
 });
 
