@@ -1,0 +1,32 @@
+<%- model_class = @demand.class -%>
+<h1>Demand Add</h1>
+
+<%= form_tag url_for(:controller => "demands", :action => "create"), :class => 'form-horizontal' do %>
+  <div class="control-group">
+    <%= label_tag "", "Description", :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :title, "", :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= label_tag "", "Host", :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :host, "", :class => 'text_field' %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    + <%= label_tag "", "Params", :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "demand_param_type", options_for_select([["手输","0"], ["接口", "1"]]), :class => "span1" %>
+      <%= text_field_tag "demand_param", "", :class => "input-small" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                demands_path, :class => 'btn' %>
+  </div>
+<% end %>

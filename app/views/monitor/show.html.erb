@@ -1,0 +1,26 @@
+
+<%= form_tag url_for(:controller => "monitor", :action => "update"), :class => "form-horizontal", :id => "monitor_form" do %>
+  <fieldset>
+    <legend>中间层服务监控</legend>
+    <div id="operate_build_area">
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">用户邮箱</label>
+      <div class="controls">
+        <%= text_area_tag "monitor_user_input", "#{text_area_show @users}", :class => "input-large" %>
+      </div>
+    </div>
+    <div class="control-group" id="playlog_user">
+      <label class="control-label" for="input01">中间层服务</label>
+      <div class="controls">
+        <%= text_area_tag "monitor_url_input", "#{text_area_show @urls}", :class => "input-xxlarge", :rows => 10 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </fieldset>
+
+<% end %>

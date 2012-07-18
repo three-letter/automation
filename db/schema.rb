@@ -11,13 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424030449) do
+ActiveRecord::Schema.define(:version => 20120717063510) do
 
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
+  create_table "demand_interfaces", :force => true do |t|
+    t.integer  "demand_id"
+    t.integer  "interface_id"
+    t.integer  "child_interface_id"
+    t.string   "params"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "demands", :force => true do |t|
+    t.string   "title"
+    t.string   "host"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "interfaces", :force => true do |t|
+    t.string   "host"
+    t.string   "params"
+    t.string   "results"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id",                       :null => false
+    t.text     "data",       :limit => 2147483647
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"

@@ -74,5 +74,57 @@ $(document).ready(function(){
 
 });
 
+  //根据grant_type显示对应的输入项
+  $("#app_info_grant_type_input").change(function(){
+    var cur = $(this).val();
+    $("#app_info_grant_type_input option").each(function(){
+      var type = $(this).val();
+    if(type == cur)
+        $("#"+type).show();
+      else
+        $("#"+type).hide();
+    });
+  });
+
+  //根据playlog_type显示对应的输入项
+  $("#playlog_type_input").change(function(){
+    var cur = $(this).val();
+    $("#playlog_type_input option").each(function(){
+      var type = $(this).val();
+      if(cur == type)
+        $("#playlog_"+type).show();
+      else
+        $("#playlog_"+type).hide();
+    });
+  });
+
+  //根据demand的param类型显示对应的输入项
+  $("*[name='demand_param_type']").each(function(){
+    var p_div = $(this).parent();
+    $(this).change(function(){
+      var type = $(this).val();
+      var html = ''
+      if(type == 0)
+        $(this).next().next().remove();
+      else
+        html = '<p><input name="children_host" class="input-xxlarge" type="text" placeholder="请输入获取该参数值的接口地址 参数 以及返回结果key 用空格分开"></p>'; 
+      p_div.append($(html));
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

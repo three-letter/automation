@@ -1,6 +1,20 @@
 Automation::Application.routes.draw do
 
+  get "demands/index"
+
+  get "interfaces/index"
+
+  get "playlog/index"
+
+  get "monitor/show"
+
+  get "app_info/index"
+
   get "ds/show"
+  
+  resources :demands
+  resources :interfaces
+  resources :remand_interfaces
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

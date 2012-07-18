@@ -1,0 +1,11 @@
+
+<%= form_tag url_for(:controller => "builder", :action => "rebuild"), :remote => "true", :class => "form-horizontal" do %>
+  <fieldset>
+    <legend>Playlog查询</legend>
+    <!--%= text_area_tag "token",flash[:notice],:rows => 25%-->
+    <div class="alert alert-success">
+      <a class="close" href="/playlog/index" href="/playlog/index" data-dismiss="alert">×</a>
+      <%=h flash[:notice] %>
+    </div>
+  </fieldset>
+<% end %>

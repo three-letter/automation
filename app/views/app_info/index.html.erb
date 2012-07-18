@@ -1,0 +1,90 @@
+
+<%= form_tag url_for(:controller => "app_info", :action => "show"), :class => "form-horizontal", :id => "app_info_form" do %>
+  <fieldset>
+    <legend>Access_Token查询</legend>
+    <div id="operate_build_area">
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">HOST</label>
+      <div class="controls">
+        <%= radio_button_tag "app_info_host_input", 0, :checked => true %>线上
+        <%= radio_button_tag "app_info_host_input", 1 %>测试
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">AppID</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_appid_input", "", :class => "input-large" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Ckey</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_ckey_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">Grant_Type</label>
+      <div class="controls">
+        <%= select_tag("app_info_grant_type_input",options_for_select([["", ""],["authorization_code", "authorization_code"],["password", "password"], ["refresh_token", "refresh_token"]]), :class => "span3") %>
+      </div>
+    </div>
+
+    <div id="authorization_code" class="hide">
+    <div class="control-group">
+      <label class="control-label" for="input01">Code</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_code_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">Redirect_Uri</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_redirect_uri_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    </div>
+
+    <div id="password" class="hide">
+    <div class="control-group">
+      <label class="control-label" for="input01">UserName</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_username_input", "", :class => "input-large" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Password</label>
+      <div class="controls">
+        <%= password_field_tag "app_info_password_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    </div>
+    
+    <div id="refresh_token" class="hide">
+    <div class="control-group">
+      <label class="control-label" for="input01">Login_Type</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_logintype_input", "", :class => "input-large" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">Refresh_Token</label>
+      <div class="controls">
+        <%= text_field_tag "app_info_refresh_token_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    </div>
+
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </fieldset>
+
+<% end %>

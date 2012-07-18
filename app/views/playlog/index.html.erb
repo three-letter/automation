@@ -1,0 +1,35 @@
+
+
+<%= form_tag url_for(:controller => "playlog", :action => "show"), :class => "form-horizontal", :id => "app_info_form" do %>
+  <fieldset>
+    <legend>Playlog查询</legend>
+    <div id="operate_build_area">
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">Identity_Type</label>
+      <div class="controls">
+        <%= select_tag("playlog_type_input",options_for_select([["user", "user"],["guid", "guid"]]), :class => "span3") %>
+      </div>
+    </div>
+
+    <div class="control-group" id="playlog_user">
+      <label class="control-label" for="input01">User_Name</label>
+      <div class="controls">
+        <%= text_field_tag "playlog_user_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    
+    <div class="control-group hide" id="playlog_guid">
+      <label class="control-label" for="input01">Identity_Num</label>
+      <div class="controls">
+        <%= text_field_tag "playlog_guid_input", "", :class => "input-large" %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </fieldset>
+
+<% end %>
