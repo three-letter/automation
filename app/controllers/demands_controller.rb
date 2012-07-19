@@ -41,15 +41,14 @@ class DemandsController < ApplicationController
   # POST /demands.json
   def create
     @demand = Demand.new(params[:demand])
-
     respond_to do |format|
-      if @demand.save
-        format.html { redirect_to @demand, notice: 'Demand was successfully created.' }
-        format.json { render json: @demand, status: :created, location: @demand }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @demand.errors, status: :unprocessable_entity }
-      end
+      title = params[:title]
+      host = params[:host]
+      demand_param_type = params[:demand_param_type]
+      demand_param = params[:demand_param]
+      children_host = params[:children_param]
+      result = params[:demand_result]
+    
     end
   end
 
@@ -80,4 +79,42 @@ class DemandsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    #初始化页面提交的数据，依次为：title host param_type param children_host
+    def init_param *args
+      #init interface
+      interface = Interface.new 
+      interface.host = args[1]
+      interface.params = args[3].join("-")
+      interface.results = args[3]
+
+
+    end
+    
+    #init demand
+    def init_demand title, host
+      demand = Demand.new
+      demand.title = args[0]
+      demand.host = args[1]
+      demand
+    end
+    
+    #init interface
+    def init_interface host, type, param, children_host, result
+      interfaces = [] #base interface
+      interface = Interface.new
+      interface.host = host
+      interface.param = param.join("-")
+      interface.results = result
+      interfaces << interface
+      if !children_host.nil?
+        type.each_with_index do |t,i|
+          next if t == 0
+
+        end
+      end
+      interfaces
+    end
+
 end

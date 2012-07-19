@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717063510) do
+ActiveRecord::Schema.define(:version => 20120719065136) do
 
   create_table "demand_interfaces", :force => true do |t|
     t.integer  "demand_id"
@@ -35,13 +35,14 @@ ActiveRecord::Schema.define(:version => 20120717063510) do
     t.string   "results"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "types"
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id",                       :null => false
-    t.text     "data",       :limit => 2147483647
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"

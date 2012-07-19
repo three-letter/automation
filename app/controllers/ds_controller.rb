@@ -17,7 +17,7 @@ class DsController < ApplicationController
     fd1 = "showcategory%20showname%20showsubtitle%20releasedate%20"
     fd2 = "showalias%20showkeyword%20source%20showkeyword%20"
     fd3 = "area%20source%20"
-    fd4 = "distributor%20"
+    fd4 = "distributor%20tudou_num%20"
     fd5 = "production%20performer%20"
     url = "http://10.10.221.101/show.show?q=showid%3A#{show_id}&fc=&fd=#{fd1}%20#{fd2}%20#{fd3}%20#{fd4}%20#{fd5}&pn=1&pl=2&ob=showid%3Aasc&ft=json&cl=test_page&h=3"
     respond_to do |format|

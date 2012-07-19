@@ -98,10 +98,8 @@ $(document).ready(function(){
     });
   });
 
-  //根据demand的param类型显示对应的输入项
-  $("*[name='demand_param_type']").each(function(){
-    var p_div = $(this).parent();
-    $(this).change(function(){
+  $("select[name='demand_param_type']").live("change", function(){
+      var p_div = $(this).parent();
       var type = $(this).val();
       var html = ''
       if(type == 0)
@@ -109,11 +107,24 @@ $(document).ready(function(){
       else
         html = '<p><input name="children_host" class="input-xxlarge" type="text" placeholder="请输入获取该参数值的接口地址 参数 以及返回结果key 用空格分开"></p>'; 
       p_div.append($(html));
-    });
   });
 
+  //动态添加demand参数
+  $("#demand_param_add").click(function(){
+     var p_div = $(this).parent();
+     var html = '';
+     html += '<div class="control-group">';
+     html += '<label class="control-label">Params</label>';
+     html += '<div class="controls">';
+     html += '<select class="span1" id="demand_param_type" name="demand_param_type">';
+     html += '<option value="0">手输</option>';
+     html += '<option value="1">接口</option>';
+     html += '</select>';
+     html += '<input class="input-small" id="demand_param" name="demand_param" type="text" value="" />';
+     html += '</div> </div>';
+     p_div.append($(html));
 
-
+  })
 
 
 

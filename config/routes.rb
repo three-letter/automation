@@ -1,5 +1,7 @@
 Automation::Application.routes.draw do
 
+  get "file_db/index"
+
   get "demands/index"
 
   get "interfaces/index"
