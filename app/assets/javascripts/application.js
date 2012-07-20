@@ -126,8 +126,31 @@ $(document).ready(function(){
 
   })
 
+  //动态显示filedb的视频信息
+  $("*[name='filedb_datasource']").click(function(){
+    host = ''
+    $("*[name='filedb_host']").each(function(){
+      if($(this).attr("checked") == "checked")
+        host = $(this).val(); 
+    });
+    source = $(this).val();
+    $.ajax({
+        url: "/filedb/show",
+        type: "GET",
+        data: "filedb_host="+host+"&filedb_datasource="+source,
+        success:function(data){
+        }
+    });
+  });
 
-
+  $("*[name='filedb_vid']").each(function(){
+     var values = $("#filedb_values").val();
+     if values.length == 0
+        values = ","
+     var value = $(this).val();
+     if($(this).attr("checked") == "checked")
+        
+  });
 
 
 

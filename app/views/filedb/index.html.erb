@@ -1,0 +1,78 @@
+
+<h2>File Db 接口测试</h2>
+<div class="tabbable" style="margin-top:20px">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#get" data-toggle="tab">get</a></li>
+    <li><a href="#insert" data-toggle="tab">insert</a></li>
+    <li><a href="#update" data-toggle="tab">update</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="get">
+<%= form_tag url_for(:controller => "filedb", :action => "check"), :remote => "true", :class => "form-horizontal" do %>
+  <fieldset>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">测试环境:</label>
+      <div class="controls">
+        <label class="radio inline">
+          <%= radio_button_tag  "filedb_host", 0, :checked => "checked" %>测试环境
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag  "filedb_host", 1 %>仿真环境
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag  "filedb_host", 2 %>线上环境
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">测试视频:</label>
+      <div class="controls">
+        <label class="radio inline">
+          <%= radio_button_tag "filedb_datasource", 0 %>PC端
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag "filedb_datasource", 1 %>无线端
+        </label>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <label class="control-label" for="input01">预期结果:</label>
+      <div class="controls">
+        <label class="radio inline">
+          <%= radio_button_tag "filedb_value", 0 %>失败
+        </label>
+        <label class="radio inline">
+          <%= radio_button_tag "filedb_value", 1 , :checked => "true" %>成功
+        </label>
+      </div>
+    </div>
+    <%= hidden_field_tag "filedb_values", "" %>
+    <div id="get_result_area">
+
+    </div>
+    
+    <div id="assert_result">
+
+    </div>
+
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </fieldset>
+<% end %>
+    </div>
+    
+    <div class="tab-pane" id="insert">
+      <p>Insert.</p>
+    </div>
+    
+    <div class="tab-pane" id="update">
+      <p>Update.</p>
+    </div>
+
+  </div>
+</div>

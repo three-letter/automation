@@ -1,0 +1,10 @@
+var html = '<div class="control-group">';
+html += '<label class="control-label" for="input01">测试视频:</label>';
+html += '<div class="controls">';
+<% @vids.each do |v| %>        
+  html += '<label class="checkbox">';
+  html += '<%= check_box_tag  "filedb_vid", "#{vid_decode v}" %><%= vid_decode v %>';
+  html += '</label>';
+  <% end %>
+html += "</div></div>";
+$("#get_result_area").html(html);
