@@ -18,7 +18,7 @@ class DemandsControllerTest < ActionController::TestCase
 
   test "should create demand" do
     assert_difference('Demand.count') do
-      post :create, demand: { host: @demand.host, title: @demand.title }
+      post :create, demand: { host: @demand.host, interface_id: @demand.interface_id, title: @demand.title }
     end
 
     assert_redirected_to demand_path(assigns(:demand))
@@ -35,7 +35,7 @@ class DemandsControllerTest < ActionController::TestCase
   end
 
   test "should update demand" do
-    put :update, id: @demand, demand: { host: @demand.host, title: @demand.title }
+    put :update, id: @demand, demand: { host: @demand.host, interface_id: @demand.interface_id, title: @demand.title }
     assert_redirected_to demand_path(assigns(:demand))
   end
 

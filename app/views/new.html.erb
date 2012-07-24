@@ -11,7 +11,7 @@
   <div class="control-group">
     <%= label_tag "", "Host", :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag "interface[][:host]", "", :class => 'text_field' %>
+      <%= text_field_tag :host, "", :class => 'text_field' %>
     </div>
   </div>
 
@@ -19,15 +19,15 @@
   <div class="control-group">
      <%= label_tag "", "Params", :class => 'control-label' %> <a id="demand_param_add" href="#">+</a>
     <div class="controls">
-      <%= select_tag "interface[][:type]", options_for_select([["手输","0"], ["接口", "1"]]), :class => "span1" %>
-      <%= text_field_tag "interface[][:param]", "", :class => "input-small" %>
+      <%= select_tag "demand_param_type", options_for_select([["手输","0"], ["接口", "1"]]), :class => "span1" %>
+      <%= text_field_tag "demand_param", "", :class => "input-small" %>
     </div>
   </div>
 
   <div class="control-group">
     <%= label_tag "", "Results", :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag "interface[][:result]", "", :class => 'input-xxlarge', :placeholder => '接口返回接口中目标结果的key,多个以空格隔开' %>
+      <%= text_field_tag :demand_result, "", :class => 'input-xxlarge', :placeholder => '接口返回接口中目标结果的key,多个以空格隔开' %>
     </div>
   </div>
 

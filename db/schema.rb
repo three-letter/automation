@@ -11,31 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719065136) do
-
-  create_table "demand_interfaces", :force => true do |t|
-    t.integer  "demand_id"
-    t.integer  "interface_id"
-    t.integer  "child_interface_id"
-    t.string   "params"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
+ActiveRecord::Schema.define(:version => 20120724084333) do
 
   create_table "demands", :force => true do |t|
+    t.integer  "interface_id"
     t.string   "title"
     t.string   "host"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "interfaces", :force => true do |t|
     t.string   "host"
-    t.string   "params"
-    t.string   "results"
+    t.string   "param"
+    t.string   "result"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "types"
+  end
+
+  create_table "params", :force => true do |t|
+    t.integer  "demand_id"
+    t.integer  "interface_id"
+    t.string   "name"
+    t.integer  "type"
+    t.integer  "children_interface_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "sessions", :force => true do |t|

@@ -1,5 +1,7 @@
 Automation::Application.routes.draw do
 
+  resources :demands
+
   get "filedb/index"
 
   get "file_db/index"
@@ -15,9 +17,7 @@ Automation::Application.routes.draw do
   get "app_info/index"
 
   get "ds/show"
-  
-  resources :demands
-  resources :interfaces
+    resources :interfaces
   resources :remand_interfaces
 
   # The priority is based upon order of creation:

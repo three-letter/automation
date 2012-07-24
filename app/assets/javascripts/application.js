@@ -98,7 +98,7 @@ $(document).ready(function(){
     });
   });
 
-  $("select[name='demand_param_type']").live("change", function(){
+  $("select[name='interface[][:type]']").live("change", function(){
       var p_div = $(this).parent();
       var type = $(this).val();
       var html = ''
@@ -116,11 +116,11 @@ $(document).ready(function(){
      html += '<div class="control-group">';
      html += '<label class="control-label">Params</label>';
      html += '<div class="controls">';
-     html += '<select class="span1" id="demand_param_type" name="demand_param_type">';
+     html += '<select class="span1" name="interface[][:type]">';
      html += '<option value="0">手输</option>';
      html += '<option value="1">接口</option>';
      html += '</select>';
-     html += '<input class="input-small" id="demand_param" name="demand_param" type="text" value="" />';
+     html += '<input class="input-small" name="interface[][:param]" type="text" value="" />';
      html += '</div> </div>';
      p_div.append($(html));
 
@@ -145,10 +145,10 @@ $(document).ready(function(){
 
   $("*[name='filedb_vid']").each(function(){
      var values = $("#filedb_values").val();
-     if values.length == 0
+     if(values.length == 0)
         values = ","
      var value = $(this).val();
-     if($(this).attr("checked") == "checked")
+//if($(this).attr("checked") == "checked")
         
   });
 

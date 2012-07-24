@@ -3,7 +3,10 @@ require File.path(Rails.root) + "/lib/json/json_util"
 
 class Interface < ActiveRecord::Base
   include JsonUtil
-  attr_accessible :host, :params, :results
+  attr_accessible :host, :param, :result
+  
+  belongs_to :demand
+  has_many   :param
 
   #根据输入的参数值查询指定的结果
   def get_results *args

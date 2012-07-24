@@ -1,20 +1,29 @@
-<%= form_for @demand, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :title, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :title, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :host, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :host, :class => 'text_field' %>
-    </div>
-  </div>
+<%= form_for(@demand) do |f| %>
+  <% if @demand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@demand.errors.count, "error") %> prohibited this demand from being saved:</h2>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                demands_path, :class => 'btn' %>
+      <ul>
+      <% @demand.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :interface_id %><br />
+    <%= f.number_field :interface_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :host %><br />
+    <%= f.text_field :host %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
   </div>
 <% end %>

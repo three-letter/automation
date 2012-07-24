@@ -2,10 +2,10 @@
 
 one:
   host: MyString
-  params: MyString
-  results: MyString
+  param: MyString
+  result: MyString
 
 two:
   host: MyString
-  params: MyString
-  results: MyString
+  param: MyString
+  result: MyString
