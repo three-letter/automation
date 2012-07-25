@@ -17,7 +17,8 @@ class Rebuild
     @type_list = {"" => "","节目" => "show.show","视频" => "video.show","人物" => "person.person",
                   "CMS" => "cms.cms", "CMS部分和专辑" => "cmsdsop.cmsdsop", 
                   "节目系列" => "showseries.showseries", "看吧" => "bar.bar", 
-                  "看吧帖子" => "subject.subject", "授权记录" => "ctauth.ctauth"   
+                  "看吧帖子" => "subject.subject", "授权记录" => "ctauth.ctauth",
+                  "颁奖" => "prize.prize"
                  }
   end
 
