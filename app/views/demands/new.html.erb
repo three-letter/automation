@@ -11,25 +11,27 @@
   <div class="control-group">
     <%= label_tag "", "Host", :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag "interface[][:host]", "", :class => 'text_field' %>
-    </div>
-  </div>
-
-
-  <div class="control-group">
-     <%= label_tag "", "Params", :class => 'control-label' %> <a id="demand_param_add" href="#">+</a>
-    <div class="controls">
-      <%= select_tag "interface[][:type]", options_for_select([["手输","0"], ["接口", "1"]]), :class => "span1" %>
-      <%= text_field_tag "interface[][:param]", "", :class => "input-small" %>
+      <%= text_field_tag "demand[][:host]", "", :class => 'text_field' %>
     </div>
   </div>
 
   <div class="control-group">
     <%= label_tag "", "Results", :class => 'control-label' %>
     <div class="controls">
-      <%= text_field_tag "interface[][:result]", "", :class => 'input-xxlarge', :placeholder => '接口返回接口中目标结果的key,多个以空格隔开' %>
+      <%= text_field_tag "demand[][:result]", "", :class => 'input-small', :placeholder => '目标结果key' %>
     </div>
   </div>
+
+  <%= hidden_field_tag "demand[][:parent]", "" %>
+  
+  <div class="control-group">
+     <%= label_tag "", "Params", :class => 'control-label' %> <a id="demand_param_add" href="#">+</a>
+    <div class="controls">
+      <%= text_field_tag "demand[][:param]", "", :class => "input-small" %>
+      <%= select_tag "demand[][:type]", options_for_select([["手输","0"], ["接口", "1"]]), :class => "span1", :style => "display:none" %>
+    </div>
+  </div>
+
 
   <div class="form-actions">
     <%= submit_tag nil, :class => 'btn btn-primary' %>

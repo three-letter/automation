@@ -12,9 +12,9 @@ module RemoteSsh
   
   #索引重构
   module IndexBuild
-    @@host = "10.10.221.101"
+    @@host = "10.10.221.104"
     @@user = "root"
-    @@pwd  = "XHCeH34bEVBs"
+    @@pwd  = "111111"
     @@port = 22022
 
     #新建节目 根据不同的操作范围执行对应的脚本 并返回直接结果

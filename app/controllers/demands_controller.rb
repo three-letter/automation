@@ -40,17 +40,11 @@ class DemandsController < ApplicationController
   # POST /demands
   # POST /demands.json
   def create
-    @title = params[:title]
-    @host = params[:host]
     @demand_param = ""
-    params[:param].each do |p|
-#param = Param.new(p)
-      pa = Param.new(p)
-      @demand_param << p.to_s
+    @demand = params[:demand].to_s
+    params[:interface].each do |i|
+      @demand_param << i.to_s
     end
-    @demand_param_type = params[:demand_param_type]
-    @demand_result = params[:demand_result]
-
     respond_to do |format|
       format.html{render :show}
     end
@@ -83,4 +77,34 @@ class DemandsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private 
+    #根据demand信息创建对应的接口
+    def init_interface_by_demand demand
+      return nil if demand.nil? || demand.empty?
+      interface = Interface.new
+      demand.each do |d|
+        if d[:host].nil?
+          interface.host = d[:host].strip
+          interface.param = d[:param].strip
+          interface.result = d[:result].strip
+        else
+          interface.param += d[:param]
+        end
+      end
+      interface
+    end
+    
+    #根据参数信息创建对应的接口
+    def init_interface_by_param param
+      interfaces = []
+      param.each do |p|
+        interface = Interface.new
+        interface.host = d[:host].strip
+        interface.param = d[:param].strip
+        interface.result = d[:result].strip
+        interfaces << interface
+      end
+      interfaces
+    end
 end

@@ -98,14 +98,32 @@ $(document).ready(function(){
     });
   });
 
+  $("*[name='interface[][:param]']").live("blur", function(){
+      var param = $(this).val();
+      if(param.length == 0)
+        $(this).next().hide();
+      else
+        $(this).next().show();
+  });
+
   $("select[name='interface[][:type]']").live("change", function(){
       var p_div = $(this).parent();
       var type = $(this).val();
       var html = ''
       if(type == 0)
-        $(this).next().next().remove();
-      else
-        html = '<p><input name="children_host" class="input-xxlarge" type="text" placeholder="请输入获取该参数值的接口地址 参数 以及返回结果key 用空格分开"></p>'; 
+        p_div.children("p").remove();
+      else{
+        html = '<p>';
+        html += '<input name="interface[][:host]" class="input-large" type="text" placeholder="接口地址">';
+        html += '<input class="input-small" type="text" value="" name="interface[][:param]" placeholder="接口参数">';
+        html += '<select style="display:none" class="span1" name="interface[][:type]">';
+        html += '<option value="0">手输</option>';
+        html += '<option value="1">接口</option>';
+        html += '</select>';
+        html += '<input class="input-small" type="text" value="" name="interface[][:result]" placeholder="返回结果">';
+        html += '<input type="hidden" value="'+$(this).prev().val()+'" name="interface[][:parent]">';
+        html += '</p>'; 
+      }
       p_div.append($(html));
   });
 
@@ -116,15 +134,15 @@ $(document).ready(function(){
      html += '<div class="control-group">';
      html += '<label class="control-label">Params</label>';
      html += '<div class="controls">';
-     html += '<select class="span1" name="interface[][:type]">';
+     html += '<input class="input-small" name="demand[][:param]" type="text" value="" />';
+     html += '<select class="span1" name="demand[][:type]">';
      html += '<option value="0">手输</option>';
      html += '<option value="1">接口</option>';
      html += '</select>';
-     html += '<input class="input-small" name="interface[][:param]" type="text" value="" />';
      html += '</div> </div>';
      p_div.append($(html));
 
-  })
+  });
 
   //动态显示filedb的视频信息
   $("*[name='filedb_datasource']").click(function(){
@@ -161,4 +179,31 @@ $(document).ready(function(){
 
 
 
+  $("*[name='demand[][:param]']").live("blur", function(){
+      var param = $(this).val();
+      if(param.length == 0)
+        $(this).next().hide();
+      else
+        $(this).next().show();
+  });
 
+  $("select[name='demand[][:type]']").live("change", function(){
+      var p_div = $(this).parent();
+      var type = $(this).val();
+      var html = ''
+      if(type == 0)
+        p_div.children("p").remove();
+      else{
+        html = '<p>';
+        html += '<input name="interface[][:host]" class="input-large" type="text" placeholder="接口地址">';
+        html += '<input class="input-small" type="text" value="" name="interface[][:param]" placeholder="接口参数">';
+        html += '<select style="display:none" class="span1" name="interface[][:type]">';
+        html += '<option value="0">手输</option>';
+        html += '<option value="1">接口</option>';
+        html += '</select>';
+        html += '<input class="input-small" type="text" value="" name="interface[][:result]" placeholder="返回结果">';
+        html += '<input type="hidden" value="'+$(this).prev().val()+'" name="interface[][:parent]">';
+        html += '</p>'; 
+      }
+      p_div.append($(html));
+  });
