@@ -6,7 +6,7 @@ class Interface < ActiveRecord::Base
   attr_accessible :host, :param, :result
   
   belongs_to :demand
-  has_many   :param
+  has_many   :params
 
   #根据输入的参数值查询指定的结果
   def get_results *args

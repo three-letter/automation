@@ -40,13 +40,16 @@ class DemandsController < ApplicationController
   # POST /demands
   # POST /demands.json
   def create
-    @demand_param = ""
-    @demand = params[:demand].to_s
-    params[:interface].each do |i|
-      @demand_param << i.to_s
-    end
+    @demand = params[:demand]
+    @interface = params[:interface]
     respond_to do |format|
-      format.html{render :show}
+     begin
+       d_save = init_by_demand(@demand)
+       i_save = init_by_param(d_save[0].id, d_save[1].id, @demand, @interface) 
+       format.html{render :show}
+     rescue
+        format.html{render :new}
+     end
     end
   end
 
@@ -80,31 +83,70 @@ class DemandsController < ApplicationController
 
   private 
     #根据demand信息创建对应的接口
-    def init_interface_by_demand demand
-      return nil if demand.nil? || demand.empty?
+    def init_by_demand demand
+      return if demand.nil? || demand.empty?
+      #初始化demand接口并保存
+      type, children = 0, 0
       interface = Interface.new
       demand.each do |d|
-        if d[:host].nil?
-          interface.host = d[:host].strip
-          interface.param = d[:param].strip
-          interface.result = d[:result].strip
+        if d[":host"]
+          interface.host = d[":host"].strip
+          interface.param = d[":param"].strip
+          interface.result = d[":result"].strip
+          type = d[":type"].to_i
+          children = d[":parent"].to_i
         else
-          interface.param += d[:param]
+          interface.param += " #{d[':param'].strip}"
         end
       end
-      interface
+      interface.save 
+      #初始化demand对象并保存
+      demand = Demand.new
+      demand.interface_id = interface.id
+      demand.title = params[:title]
+      demand.host = interface.host
+      demand.save
+      d, i = demand,interface
     end
     
     #根据参数信息创建对应的接口
-    def init_interface_by_param param
-      interfaces = []
+    def init_by_param(did, iid, demand, param)
+      inter_hash, child_hash = [], []
+      #初始化接口并保存
       param.each do |p|
         interface = Interface.new
-        interface.host = d[:host].strip
-        interface.param = d[:param].strip
-        interface.result = d[:result].strip
-        interfaces << interface
+        interface.host = p[":host"].strip
+        interface.param = p[":param"].strip
+        interface.result = p[":result"].strip
+        interface.save
+        inter_hash << interface.param.to_s
+        inter_hash << interface.id.to_i
+        child_hash << p[":parent"].to_s
+        child_hash << interface.id
       end
-      interfaces
+      inter_hash = Hash[*inter_hash]
+      child_hash = Hash[*child_hash]
+      #初始化demand参数对象并保存
+      demand.each do |d|
+        pa = Param.new
+        pa.demand_id = did
+        pa.interface_id = iid
+        pa.name = d[":param"]
+        pa.type= d[":type"]
+        pa.children_interface_id = child_hash["#{d[':param']}"].to_i
+        pa.save
+      end
+      #初始化interface参数对象并保存
+      param.each do |d|
+        pa = Param.new
+        pa.demand_id = did
+        pa.interface_id = inter_hash["#{d[':param']}"]
+        pa.name = d[":param"]
+        pa.type= d[":type"]
+        pa.children_interface_id = child_hash["#{d[":param"]}"].to_i
+        pa.save
+      end
+
     end
+
 end
