@@ -112,4 +112,25 @@
     </form>
   </div>
   </fieldset>
+
+
+  <fieldset>
+    <legend>节目图片上传</legend>
+    <div id="operate_build_area">
+    
+    <form method="post" action="http://10.10.221.104:8088/ds/show/poster/save.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">图片信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </div>
+  </fieldset>
 <!--% end %-->
