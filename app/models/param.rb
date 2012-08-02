@@ -1,10 +1,6 @@
 class Param < ActiveRecord::Base
-  attr_accessible :children_interface_id, :demand_id, :interface_id, :name, :type
+  attr_accessible :children_interface_id, :demand_id, :interface_id, :name, :kind
   
-  belongs_to :demand 
-  belongs_to :interface
-  
-
   #根据参数-关联json结果对应关系返回结果
   #如根据uname返回的uid，作为参数获取token
   def get_results *args

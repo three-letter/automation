@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724084333) do
+ActiveRecord::Schema.define(:version => 20120802035038) do
 
   create_table "demands", :force => true do |t|
     t.integer  "interface_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20120724084333) do
     t.integer  "demand_id"
     t.integer  "interface_id"
     t.string   "name"
-    t.integer  "type"
+    t.integer  "kind"
     t.integer  "children_interface_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false

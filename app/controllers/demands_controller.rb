@@ -14,7 +14,11 @@ class DemandsController < ApplicationController
   # GET /demands/1.json
   def show
     @demand = Demand.find(params[:id])
-
+    @all_params = []
+    all_params = Param.find_all_by_demand_id(params[:id])
+    all_params.each do |p|
+      @all_params << p.name if p.kind == 0
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @demand }
@@ -46,7 +50,7 @@ class DemandsController < ApplicationController
      begin
        d_save = init_by_demand(@demand)
        i_save = init_by_param(d_save[0].id, d_save[1].id, @demand, @interface) 
-       format.html{render :show}
+       format.html{redirect_to @demand}
      rescue
         format.html{render :new}
      end
@@ -132,7 +136,7 @@ class DemandsController < ApplicationController
         pa.demand_id = did
         pa.interface_id = iid
         pa.name = d[":param"]
-        pa.type= d[":type"]
+        pa.kind = d[":type"]
         pa.children_interface_id = child_hash["#{d[':param']}"].to_i
         pa.save
       end
@@ -142,7 +146,7 @@ class DemandsController < ApplicationController
         pa.demand_id = did
         pa.interface_id = inter_hash["#{d[':param']}"]
         pa.name = d[":param"]
-        pa.type= d[":type"]
+        pa.kind = d[":type"]
         pa.children_interface_id = child_hash["#{d[":param"]}"].to_i
         pa.save
       end

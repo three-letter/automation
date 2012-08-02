@@ -17,8 +17,8 @@ Automation::Application.routes.draw do
   get "app_info/index"
 
   get "ds/show"
-    resources :interfaces
-  resources :remand_interfaces
+  resources :interfaces
+  resources :params
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

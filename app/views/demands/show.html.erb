@@ -1,2 +1,21 @@
-<%= "demand: #{@demand}" %><br/>
-<%= "interface: #{@interface}" %><br/>
+
+
+<%= form_tag url_for(:controller => "demand", :action => "edit"), :class => "form-horizontal" do %>
+  <fieldset>
+    <legend><%= @demand.title %></legend>
+
+    <% @all_params.each do |p| %>
+      <div class="control-group">
+        <label class="control-label" for="input01"><%= p %></label>
+        <div class="controls">
+          <%= text_field_tag "#{p}", "" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </fieldset>
+<% end %>
