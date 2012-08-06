@@ -3,7 +3,7 @@ require File.expand_path("../layer",__FILE__)
 module JsonUtil
   extend Layer
   #根据参数key返回对应value结果
-  def get_results keys, url
+  def self.get_results keys, url
     doc = open(url).read
     json = JSON doc
     results = []

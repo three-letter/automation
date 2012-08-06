@@ -1,20 +1,11 @@
-<h1>Listing demands</h1>
+<h3>Listing demands</h3>
 
-<table>
-  <tr>
-    <th>Interface</th>
-    <th>Title</th>
-    <th>Host</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<table class="table">
 
 <% @demands.each do |demand| %>
   <tr>
     <td><%= demand.interface_id %></td>
     <td><%= demand.title %></td>
-    <td><%= demand.host %></td>
     <td><%= link_to 'Show', demand %></td>
     <td><%= link_to 'Edit', edit_demand_path(demand) %></td>
     <td><%= link_to 'Destroy', demand, confirm: 'Are you sure?', method: :delete %></td>

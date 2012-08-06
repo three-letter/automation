@@ -1,6 +1,6 @@
 
 
-<%= form_tag url_for(:controller => "demand", :action => "edit"), :class => "form-horizontal" do %>
+<%= form_tag demand_path, :method => :put, :class => "form-horizontal" do %>
   <fieldset>
     <legend><%= @demand.title %></legend>
 

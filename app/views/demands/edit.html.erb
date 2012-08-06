@@ -1,6 +1,11 @@
-<h1>Editing demand</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @demand %> |
-<%= link_to 'Back', demands_path %>
+<%= form_tag url_for(:controller => "builder", :action => "rebuild"), :remote => "true", :class => "form-horizontal" do %>
+  <fieldset>
+    <legend>查询结果</legend>
+    <!--%= text_area_tag "token",flash[:notice],:rows => 25%-->
+    <div class="alert alert-success">
+      <a class="close" href="<%= demands_path %>" data-dismiss="alert">×</a>
+      <%= @result %>
+    </div>
+  </fieldset>
+<% end %>

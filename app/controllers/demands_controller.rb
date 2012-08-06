@@ -1,3 +1,6 @@
+#coding:utf-8
+require File.expand_path("../../../lib/json/json_util",__FILE__)
+
 class DemandsController < ApplicationController
   # GET /demands
   # GET /demands.json
@@ -50,7 +53,7 @@ class DemandsController < ApplicationController
      begin
        d_save = init_by_demand(@demand)
        i_save = init_by_param(d_save[0].id, d_save[1].id, @demand, @interface) 
-       format.html{redirect_to @demand}
+       format.html{redirect_to d_save[0]}
      rescue
         format.html{render :new}
      end
@@ -60,16 +63,13 @@ class DemandsController < ApplicationController
   # PUT /demands/1
   # PUT /demands/1.json
   def update
-    @demand = Demand.find(params[:id])
-
     respond_to do |format|
-      if @demand.update_attributes(params[:demand])
-        format.html { redirect_to @demand, notice: 'Demand was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @demand.errors, status: :unprocessable_entity }
-      end
+#    begin
+      @result = get_result
+      format.html { render :action => "edit", :id => params[:id] }
+#   rescue
+        format.html { redirect_to :action => "show", :id => params[:id] }
+#     end
     end
   end
 
@@ -78,6 +78,13 @@ class DemandsController < ApplicationController
   def destroy
     @demand = Demand.find(params[:id])
     @demand.destroy
+    
+    pas = Param.find_all_by_demand_id(params[:id])
+    pas.each do |p|
+      p.destroy
+      i = Interface.find(p.interface_id)
+      i.destroy unless i.nil?
+    end
 
     respond_to do |format|
       format.html { redirect_to demands_url }
@@ -116,17 +123,19 @@ class DemandsController < ApplicationController
     #根据参数信息创建对应的接口
     def init_by_param(did, iid, demand, param)
       inter_hash, child_hash = [], []
-      #初始化接口并保存
-      param.each do |p|
-        interface = Interface.new
-        interface.host = p[":host"].strip
-        interface.param = p[":param"].strip
-        interface.result = p[":result"].strip
-        interface.save
-        inter_hash << interface.param.to_s
-        inter_hash << interface.id.to_i
-        child_hash << p[":parent"].to_s
-        child_hash << interface.id
+      if param
+        #初始化接口并保存
+        param.each do |p|
+          interface = Interface.new
+          interface.host = p[":host"].strip
+          interface.param = p[":param"].strip
+          interface.result = p[":result"].strip
+          interface.save
+          inter_hash << interface.param.to_s
+          inter_hash << interface.id.to_i
+          child_hash << p[":parent"].to_s
+          child_hash << interface.id
+        end
       end
       inter_hash = Hash[*inter_hash]
       child_hash = Hash[*child_hash]
@@ -140,17 +149,54 @@ class DemandsController < ApplicationController
         pa.children_interface_id = child_hash["#{d[':param']}"].to_i
         pa.save
       end
-      #初始化interface参数对象并保存
-      param.each do |d|
-        pa = Param.new
-        pa.demand_id = did
-        pa.interface_id = inter_hash["#{d[':param']}"]
-        pa.name = d[":param"]
-        pa.kind = d[":type"]
-        pa.children_interface_id = child_hash["#{d[":param"]}"].to_i
-        pa.save
+      if param
+        #初始化interface参数对象并保存
+        param.each do |d|
+          pa = Param.new
+          pa.demand_id = did
+          pa.interface_id = inter_hash["#{d[':param']}"]
+          pa.name = d[":param"]
+          pa.kind = d[":type"]
+          pa.children_interface_id = child_hash["#{d[":param"]}"].to_i
+          pa.save
+        end
       end
+    end
 
+    #根据录制的过程和输入参数返回结果
+    def get_result
+      return "demand id 缺失！" if params[:id].nil?
+      demand = Demand.find(params[:id])
+      return "demand不存在！" if demand.nil?
+      trunk = Interface.find(demand.interface_id)
+      return "接口(id:#{demand.interface_id})不存在！" if trunk.nil?
+      get_interface_result(trunk.id, params[:id])
+    end
+
+    #根据已知接口返回最终结果
+    def get_interface_result iid, did
+      trunk = Interface.find(iid)
+      url = trunk.host
+      ps = trunk.param.split(/\s+/)
+      ps.each do |p|
+        url += "&" if url.include?("=")
+        url += "#{p}="
+        branch = Param.find_by_interface_id_and_name(trunk.id,p)
+        branch = Param.find_by_demand_id_and_name(did,p) if branch.nil?
+        if branch.nil?
+          return "参数(did:#{did} name:#{p})不存在！"
+        else
+          if branch.kind == 0
+            url += params[p.to_sym]
+          else
+            url += get_interface_result(branch.children_interface_id,did)   
+          end
+        end
+      end
+      keys = trunk.result.split(/\s+/)
+      puts "url info :#{url}"
+      results = JsonUtil.get_results(keys,url)
+      results.join()
     end
 
 end
