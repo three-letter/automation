@@ -2,6 +2,11 @@
 <h1>Demand Add</h1>
 
 <%= form_tag url_for(:controller => "demands", :action => "create"), :class => 'form-horizontal' do %>
+  <% if flash[:notice]%>
+    <div class="alert alert-error">
+      <%= flash[:notice] %> 
+    </div>
+  <% end %>
   <div class="control-group">
     <%= label_tag "", "Description", :class => 'control-label' %>
     <div class="controls">

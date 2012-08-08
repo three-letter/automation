@@ -3,7 +3,11 @@
 <%= form_tag demand_path, :method => :put, :class => "form-horizontal" do %>
   <fieldset>
     <legend><%= @demand.title %></legend>
-
+  <% if flash[:notice]%>
+    <div class="alert alert-error">
+      <%= flash[:notice] %> 
+    </div>
+  <% end %>
     <% @all_params.each do |p| %>
       <div class="control-group">
         <label class="control-label" for="input01"><%= p %></label>
@@ -15,7 +19,7 @@
 
     <div class="form-actions">
     <button class="btn btn-primary" type="submit">确定</button>
-    <button class="btn">取消</button>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), demands_path, :class => "btn" %>
     </div>
   </fieldset>
 <% end %>

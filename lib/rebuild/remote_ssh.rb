@@ -12,7 +12,7 @@ module RemoteSsh
   
   #索引重构
   module IndexBuild
-    @@host = "10.10.221.104"
+    @@host = "10.10.221.101"
     @@user = "root"
     @@pwd  = "111111"
     @@port = 22022

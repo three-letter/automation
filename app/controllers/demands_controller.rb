@@ -55,7 +55,8 @@ class DemandsController < ApplicationController
        i_save = init_by_param(d_save[0].id, d_save[1].id, @demand, @interface) 
        format.html{redirect_to d_save[0]}
      rescue
-        format.html{render :new}
+       flash[:notice] = "save fail,try again!" 
+       format.html{render :new}
      end
     end
   end
@@ -64,12 +65,13 @@ class DemandsController < ApplicationController
   # PUT /demands/1.json
   def update
     respond_to do |format|
-#    begin
+     begin
       @result = get_result
       format.html { render :action => "edit", :id => params[:id] }
-#   rescue
-        format.html { redirect_to :action => "show", :id => params[:id] }
-#     end
+     rescue
+      flash[:notice] = "select fail,try again!"
+      format.html { redirect_to :action => "show", :id => params[:id] }
+     end
     end
   end
 
@@ -110,13 +112,13 @@ class DemandsController < ApplicationController
           interface.param += " #{d[':param'].strip}"
         end
       end
-      interface.save 
+      interface.save! 
       #初始化demand对象并保存
       demand = Demand.new
       demand.interface_id = interface.id
       demand.title = params[:title]
       demand.host = interface.host
-      demand.save
+      demand.save!
       d, i = demand,interface
     end
     
@@ -130,7 +132,7 @@ class DemandsController < ApplicationController
           interface.host = p[":host"].strip
           interface.param = p[":param"].strip
           interface.result = p[":result"].strip
-          interface.save
+          interface.save!
           inter_hash << interface.param.to_s
           inter_hash << interface.id.to_i
           child_hash << p[":parent"].to_s
@@ -147,7 +149,7 @@ class DemandsController < ApplicationController
         pa.name = d[":param"]
         pa.kind = d[":type"]
         pa.children_interface_id = child_hash["#{d[':param']}"].to_i
-        pa.save
+        pa.save!
       end
       if param
         #初始化interface参数对象并保存
@@ -158,7 +160,7 @@ class DemandsController < ApplicationController
           pa.name = d[":param"]
           pa.kind = d[":type"]
           pa.children_interface_id = child_hash["#{d[":param"]}"].to_i
-          pa.save
+          pa.save!
         end
       end
     end
