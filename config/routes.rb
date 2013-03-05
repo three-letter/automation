@@ -1,5 +1,19 @@
 Automation::Application.routes.draw do
 
+  get "policy/index"
+
+  get "ad/index"
+
+  get "messagepool/seq"
+
+  get "test_api/index"
+
+  get "playpolicy/index"
+
+  get "playpolicy/show"
+
+  get "playpolicy/new"
+
   resources :demands
 
   get "filedb/index"

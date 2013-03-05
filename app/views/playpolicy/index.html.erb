@@ -1,0 +1,52 @@
+
+<%= form_tag url_for(:controller => "playpolicy", :action => "show"), :class => "form-horizontal" do %>
+  <fieldset>
+    <legend>PlayPolicy</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">TestEnvir</label>
+      <div class="controls">
+        <%= radio_button_tag "test_envir", "0", :checked => true %>ontest
+        <%= radio_button_tag "test_envir", "1" %>online
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">Conf</label>
+      <div class="controls">
+        <%= text_area_tag "test_conf", "#{@conf}", :rows => 5, :class => "input-xxlarge" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">TestCase</label>
+      <div class="controls">
+        <%= text_area_tag "test_case", "#{@case}", :class => "input-xxlarge", :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">TestHost</label>
+      <div class="controls">
+        <%= text_field_tag "test_host", "", :class => "input-large" %>
+      </div>
+    </div>
+<!--  
+    <%= hidden_field_tag "test_point", "p2p" %>
+-->
+    <div class="control-group">
+      <label class="control-label" for="input01">TestPoint</label>
+      <div class="controls">
+        <%= radio_button_tag "test_point", "p2p", :checked => true %>p2p
+        <%= radio_button_tag "test_point", "tudou_cdn" %>tudou_cdn
+        <%= radio_button_tag "test_point", "player" %>player
+      </div>
+    </div>
+
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+  
+  </fieldset>
+
+<% end %>

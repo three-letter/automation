@@ -1,0 +1,83 @@
+<% content_for :left do %>
+  <a href="#addModule" role="button" class="" data-toggle="modal">Add Module</a>
+  <ul class="nav nav-list">
+  <% @modules.each do |m, cs| %>
+    <li class="nav-header"><a href="#<%= m %>"><%= m %></a></li>
+    <div id="<%= m %>" style="display:none">
+      <ul class="nav nav-list">
+      <% cs.each do |c| %>
+        <li>
+          <%= link_to "#{c}",{:controller => "test_api", :action => "method", :md => m, :me => c } %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </ul>
+  <% if @modules.size > 0 %>
+    <a href="#addModuleMethod" role="button" class="" data-toggle="modal">Add Method</a>
+  <% end %>
+<% end %>
+
+<!-- content -->
+
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <button class="close" data-dismiss="alert" type="button">×</button>
+    <%= flash[:notice] %>
+  </div>
+<%end%>
+
+
+
+<!-- start module trigger -->
+<div class="modal" id="addModule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <%= form_tag url_for(:controller => "test_api", :action => "add_module") do %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3>添加测试模块</h3>
+    </div>
+    <div class="modal-body">
+      <p>
+        <%= text_field_tag "module","", :class => "input-xxlarge" %>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Save</button>
+    </div>
+  <% end %>
+</div>
+<!-- end module trigger-->
+
+
+<!-- start module method trigger -->
+<div class="modal" id="addModuleMethod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <%= form_tag url_for(:controller => "test_api", :action => "add_module_method") do %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3>添加测试方法</h3>
+    </div>
+    <div class="modal-body">
+      <div class="form-horizontal">
+        <div class="control-group">
+          <%= label_tag "module_name", "所属模块:", :class => "control-label" %>
+          <div class="controls">
+            <%= select_tag "module_name", options_for_select(@modules.keys), :class => "span2" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= label_tag "module_method", "方法名:", :class => "control-label" %>
+          <div class="controls">
+            <%= text_field_tag "module_method", "", :class => "input-large" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Save</button>
+    </div>
+  <% end %>
+</div>
+<!-- end module method trigger-->

@@ -13,7 +13,7 @@
       </div>
     </div>
     
-    <form method="post" action="http://10.10.221.104:8088/ds/show/save.json" accept-charset="UTF-8">
+    <form method="post" action="http://10.10.221.104/ds/show/save.json" accept-charset="UTF-8">
     <div class="">
       <label class="control-label" for="input01">节目信息</label>
       <div class="">
@@ -30,6 +30,26 @@
   </fieldset>
 
 
+  <fieldset>
+    <legend>dvd视频信息保存</legend>
+    <div id="operate_build_area">
+    
+    <form method="post" action="http://10.10.221.104/ds/video/dvd/save.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">dvd视频信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </div>
+  </fieldset>
+  
   <fieldset>
     <legend>节目标记</legend>
     <div id="operate_build_area">
@@ -133,4 +153,115 @@
     </form>
   </div>
   </fieldset>
+
+  <fieldset>
+    <legend>dvd视频tudou_vid写入</legend>
+    
+    <form method="post" action="http://10.10.221.104/ds/video/save.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">dvd视频信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>节目正片/其他视频的merge</legend>
+    
+    <form method="post" action="http://10.10.221.104/ds/video/show/insert.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">节目正片/其他视频信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>更新节目付费信息</legend>
+    
+    <form method="post" action="http://10.10.221.104/ds/show/fee/save.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">更新节目付费信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>奖项prize写入信息</legend>
+    
+    <form method="post" action="http://10.10.221.104/ds/prize/save.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">写入奖项prize信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>奖项记录prizeitem写入信息</legend>
+    
+    <form method="post" action="http://10.10.221.104/ds/prize/prizeitem/save.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">写入奖项记录prizeitem信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>颁奖记录award写入信息</legend>
+    
+    <form method="post" action="http://10.10.221.104/ds/prize/award/add.json" accept-charset="UTF-8">
+    <div class="">
+      <label class="control-label" for="input01">写入颁奖记录award信息</label>
+      <div class="">
+        <%= text_area_tag "data", "", :cols => 20, :rows => 5 %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+    </form>
+  </fieldset>
+
+
 <!--% end %-->

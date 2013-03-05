@@ -9,6 +9,10 @@ module JsonUtil
     results = []
     keys.each do |k|
       layers = get_layer(k,url)
+      if layers.is_a?(String)
+        results = layers
+        break
+      end
       children_json = json
       layers.each do |l|
         children_json = children_json["#{l}"]

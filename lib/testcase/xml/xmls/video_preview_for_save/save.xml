@@ -1,0 +1,72 @@
+<testcase>
+<!-- test host  -->
+  <host>
+		 http://10.10.221.104/filedb/video/preview/save.json?
+	</host>
+	<cases>
+		
+		<case>
+			<param name="vid">99500295</param>
+                        <param name="thumb">052101104FB6086F0000015F420509A7</param>
+                        <param name="sectiontime">1000</param>
+			<result>
+				<type>constant</type>
+				<source>json</source>
+				<value>[{"vid":99500295}]</value>
+			</result>
+			<desc>全部正常的参数</desc>
+                        <fact>data</fact>
+		</case>
+
+		<case>
+                        <param name="thumb">052101104FB6086F0000015F420509A7</param>
+                        <param name="sectiontime">1000</param>
+			<result>
+				<type>constant</type>
+				<source>json</source>
+				<value>the params lack</value>
+			</result>
+			<desc>缺失必填字段vid</desc>
+                        <fact>desc</fact>
+		</case>
+		
+		<case>
+                        <param name="vid">99500295</param>
+                        <param name="sectiontime">1000</param>
+			<result>
+				<type>constant</type>
+				<source>json</source>
+				<value>the params lack</value>
+			</result>
+			<desc>缺失必填字段thumb</desc>
+                        <fact>desc</fact>
+		</case>
+
+		<case>
+                        <param name="vid">99500295</param>
+                        <param name="thumb">052101104FB6086F</param>
+			<result>
+				<type>constant</type>
+				<source>json</source>
+				<value>the params error</value>
+			</result>
+			<desc>thumb非32位</desc>
+                        <fact>desc</fact>
+		</case>
+
+		<case>
+                        <param name="vid">99500295</param>
+                        <param name="thumb">052201104FB6086F0000015F420509A7</param>
+			<result>
+				<type>constant</type>
+				<source>json</source>
+				<value>the params error</value>
+			</result>
+			<desc>thumb非0521开头</desc>
+                        <fact>desc</fact>
+		</case>
+
+
+	</cases>
+
+</testcase>

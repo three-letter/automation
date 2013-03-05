@@ -1,0 +1,20 @@
+
+<%= form_tag url_for(:controller => "messagepool", :action => "get"), :remote => "true", :class => "form-horizontal", :id => "operate_seq_form" do %>
+  <fieldset>
+    <legend>消息中心查询</legend>
+    <div id="operate_seq_area">
+    
+    <div class="control-group" id="playlog_user">
+      <label class="control-label" for="input01">视频ID</label>
+      <div class="controls">
+        <%= text_field_tag "vid", "", :class => "input-large", :placeholder => "视频ID 支持数字id和转码后id" %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="button" id="operate_seq_btn">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </fieldset>
+
+<% end %>

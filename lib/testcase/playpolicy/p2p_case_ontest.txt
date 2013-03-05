@@ -1,0 +1,5 @@
+vid  -  dma_code  -  area_code  -  category  -  p2p_partner
+107645364 - - - -
+117645364 - 4808 - 11 - 98 - ss
+127645364 - 4808 - 1102 - 98 - ss
+- - - -

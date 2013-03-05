@@ -1,0 +1,7 @@
+var msg = "<%= escape_javascript @msg %>";
+var html = '<div class="alert alert-success">';
+html += '<a class="close" data-dismiss="alert" href="/messagepool/seq">×</a>';
+html += '<p>查询结果如下：</p>';
+html += '<textarea id="" class="input-xxlarge" name="" rows="30">'+msg+' </textarea>';
+html += '</div>';
+$("#operate_seq_area").html(html);

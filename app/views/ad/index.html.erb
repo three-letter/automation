@@ -1,0 +1,91 @@
+
+<%= form_tag url_for(:controller => "ad", :action => "shortcut"), :remote => "true", :class => "form-horizontal", :id => "ad_shortcut_form" do %>
+  <fieldset>
+    <legend>广告创建投放</legend>
+    <div id="ad_shortcut_area">
+      
+    <div class="control-group">
+      <label class="control-label" for="input01">[环境]IP</label>
+      <div class="controls">
+        <%= text_field_tag "conf[ip]", "http://cpmtest.youku.com" , :readonly => "true", :class => "input-large" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">[订单]名称</label>
+      <div class="controls">
+        <%= text_field_tag "order[name]", "", :class => "input-large" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[订单]类型</label>
+      <div class="controls">
+        <%= select_tag "order[order_type]", options_for_select([["市场合同","市场合同"],["测试合同","测试合同"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[产品]终端</label>
+      <div class="controls">
+        <%= select_tag "product[device]", options_for_select([["无线","w"],["PC","p"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[配置]cpm</label>
+      <div class="controls">
+        <%= text_field_tag "config[cpm]", "6", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[预定]日期</label>
+      <div class="controls">
+        <%= text_field_tag "scheduled[date]", Time.now.strftime("%Y-%m-%d"), :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[系统投放]无线定向</label>
+      <div class="controls">
+        <%= text_field_tag "cast[deviceType]", "1", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[素材]时长</label>
+      <div class="controls">
+        <%= select_tag "scheduled[type]", options_for_select([["15s","0"],["30s","1"]]) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="input01">[素材]名称</label>
+      <div class="controls">
+        <%= text_field_tag "idea[name]", "", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[素材]内容地址</label>
+      <div class="controls">
+        <%= text_field_tag "idea[idea_url]", "", :class => "input-large" %>
+      </div>
+    </div>
+    15秒素材地址:http://v.youku.com/v_show/id_XNDkwODExMzg0.html  百事何炅谢娜</p>
+    30秒素材地址:http://v.youku.com/v_show/id_XNTA2NTczODQ4.html  深圳世界之窗</p>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">[素材]频次控制id</label>
+      <div class="controls">
+        <%= text_field_tag "idea[campaign]", "6028", :class => "input-large" %>
+      </div>
+      campaign id 6028 单用户上限10次，单用户每天3次，单用户每周5次   长期有效</p>
+    </div>
+    
+    <div class="form-actions">
+    <button id="ad_shortcut_btn" class="btn btn-primary" type="button">确定</button>
+    <button class="btn">取消</button>
+    </div>
+  </div>
+  </fieldset>
+<% end %>

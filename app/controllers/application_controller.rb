@@ -11,4 +11,30 @@ class ApplicationController < ActionController::Base
       json = JSON doc
       json["data"]["uid"]
     end
+    
+    #转码视频 节目id
+    def get_encode_id vid_str
+      return "" if vid_str.nil? || vid_str.empty?
+      url = "http://testprogram.youku.com/index/temp/urlencode/test.php?videoidencode=#{vid_str}"
+      doc = open(url).read
+      vid_regx = doc.match(/videoencode\s+(.+?)<br>/)
+      if vid_regx.nil?
+        return ""
+      else
+        return vid_regx[1]
+      end
+    end
+    
+    #解码码视频 节目id
+    def get_decode_id vid_str
+      return "" if vid_str.nil? || vid_str.empty?
+      url = "http://testprogram.youku.com/index/temp/urlencode/test.php?videoiddecode=#{vid_str}"
+      doc = open(url).read
+      vid_regx = doc.match(/videodecode\s+(\d+)/)
+      if vid_regx.nil?
+        return ""
+      else
+        return vid_regx[1]
+      end
+    end
 end

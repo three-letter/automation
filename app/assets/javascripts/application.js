@@ -15,8 +15,16 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-$(document).ready(function(){ 
-  
+$(document).ready(function(){
+  //href为#id的链接以toggle方式隐藏显示
+  $("a").each(function(){
+    $(this).click(function(){
+      obj = $(this).attr("href");
+      if(obj.indexOf("#") == 0)
+        $(obj).toggle();
+    });
+  });
+
   //选择索引重建的类型
   $("#operate_type").change(function(){
     var type = $(this).val();
@@ -206,4 +214,64 @@ $(document).ready(function(){
         html += '</p>'; 
       }
       p_div.append($(html));
+  });
+
+
+    //playpolicy js操作
+    var test_envir_q = 0;
+    var test_point_q = 'p2p';
+    $("*[name='test_envir']").each(function(){
+      $(this).click(function(){
+        var test_envir = $(this).val(); 
+        test_envir_q = test_envir;
+        $.ajax({
+            url: "/playpolicy/change_envir",
+            type: "GET",
+            data: "test_envir="+test_envir+'&test_point='+test_point_q,
+            success:function(data){
+            }
+        });
+     });
+    });
+
+    $("*[name='test_point']").each(function(){
+      $(this).click(function(){
+        var test_point = $(this).val(); 
+        test_point_q = test_point;
+        $.ajax({
+            url: "/playpolicy/change_point",
+            type: "GET",
+            data: "test_envir="+test_envir_q+"&test_point="+test_point,
+            success:function(data){
+            }
+        });
+     });
+    });
+
+    // test api 
+    $("*[name='choose_case_box']").each(function(){
+       $(this).click(function(){
+         var cho = $(this).val();
+         var chk = $(this).attr("checked");
+         if(chk == "checked"){
+            var html = '<input type="hidden" name="choose_case[]" value="' + cho + '">';
+            $(this).append($(html));
+         }else
+          $(this).children("input").remove();
+       }); 
+    });
+    
+
+  //ajax方式查询消息中心
+  $("#operate_seq_btn").click(function(){
+    $("#operate_seq_form").submit();
+    var seq_html = '<div style="width:200px;" class="progress progress-striped active"><div class="bar" style="width: 100%;">正在查询消息中心,请稍后...</div></div>';
+    $("#operate_seq_area").html(seq_html);
+  });
+
+  //ajax方式创建并投放广告
+  $("#ad_shortcut_btn").click(function(){
+    $("#ad_shortcut_form").submit();
+    var build_html = '<div style="width:200px;" class="progress progress-striped active"><div class="bar" style="width: 100%;">广告创建投放中,请稍后...</div></div>';
+    $("#ad_shortcut_area").html(build_html);
   });

@@ -1,0 +1,121 @@
+
+require File.expand_path("../../../lib/testcase/playpolicy/conf_util", __FILE__)
+require 'open-uri'
+require 'json'
+
+class PlaypolicyController < ApplicationController
+  include ConfUtil
+
+  before_filter :init_conf_file
+
+  def index
+    #获取conf配置文件信息
+    @conf = ConfUtil.get_file_format_data
+    @case = ConfUtil.get_case_info.join
+  end
+
+  def show
+    @conf = ConfUtil.get_file_format_data
+    #保存更新新后的conf配置文件
+    infos = []
+    conf = params[:test_conf]
+    conf.split("\n").each do |c|
+      c = c.strip
+      next if c.empty?
+      infos << c
+    end
+    ConfUtil.update_conf_info(infos)
+    
+    #获取testcase参数集合并保存
+    cases = []
+    test_case = params[:test_case]
+    test_case.split("\n").each do |c|
+      c = c.strip
+      next if c.empty?
+      cases << c
+    end
+    ConfUtil.update_case_info cases 
+    cases = get_test_case cases
+
+    #根据host cases生成对应的url param_hash
+    @urls, @param_hashs = [], []
+    host = params[:test_host]
+    param_name_arry = []
+    param_name_arry = cases[0] if cases.size > 0
+    cases.each_with_index do |c,i|
+      next if i == 0 
+      param_hash = Hash[param_name_arry.zip(c)]
+      @param_hashs << param_hash
+      url = host 
+      c.each_with_index do |p,pi|
+        if param_name_arry[pi] == "vid_encode"
+          p_encode = get_encode_id p
+          url += "#{param_name_arry[pi]}=#{p_encode}&"
+        else
+          url += "#{param_name_arry[pi]}=#{p}&"
+        end
+      end
+      @urls << url
+    end
+
+    #根据实际urls和param_hashs返回对应的实际结果和预期结果
+    @expects, @facts, @match_infos = [], [], []
+    method = params[:test_point]
+    @urls.each do |url|
+      fact = 0
+      begin
+        doc = open(url).read
+        json = JSON doc
+        if method == "p2p"
+          fact = json["dataset"]["p2p"][0]["allow"] 
+        else
+          fact = json["data"][0]["player"]
+        end
+      rescue
+        fact = -1
+      end
+      @facts << fact
+    end
+    @param_hashs.each do |param_hash|
+      match_p2p_conf = ConfUtil.send("match_#{method}_conf".to_sym, param_hash) #ConfUtil.match_p2p_conf(param_hash) 
+      @expects << match_p2p_conf[0]
+      @match_infos << match_p2p_conf[1]
+    end
+
+    render action:"show"
+  end
+
+  def new
+  end
+  
+  #更改测试环境，动态显示conf，cases信息
+  def change_envir
+    @conf = ConfUtil.get_file_format_data
+    @case = ConfUtil.get_case_info.join
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  private
+
+    #根据指定测试环境初始化conf配置文件
+    def init_conf_file
+      type = params[:test_envir].to_i
+      ConfUtil.init_file(type)
+    end
+    
+    #根据testcase数据返回cases集
+    def get_test_case cases
+      test_case = []
+      cases.each do |c|
+        ps = []
+        c.split(/-/).each do |p|
+          ps << p.strip
+        end
+        test_case << ps
+       end
+       test_case
+    end
+
+end

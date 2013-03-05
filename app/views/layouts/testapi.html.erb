@@ -42,21 +42,15 @@
     <div class="container">
       <div class="content">
         <div class="row">
-           <div class="span9">
-              <%= yield %>
-            </div>
-            <div class="span3">
-              <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
-                <ul class="nav nav-list">
-                  <li><%= link_to "索引重建", "/builder/index"  %></li>
-<!--                  <li><%= link_to "视频ID查询", "/video_id/input"  %></li> -->
-                  <li><%= link_to "Oauth2查询", "/app_info/index"  %></li>
-                  <li><%= link_to "Playlog查询", "/playlog/index"  %></li>
-                  <li><%= link_to "中间层服务监控", "/monitor/show"  %></li>
-                </ul>
+            <div class="span2">
+              <div class="sidebar-nav">
+                <h3>已有接口列表</h3>
+                <%= yield :left %>
               </div><!--/.well -->
             </div><!--/span-->
+           <div class="span10">
+              <%= yield %>
+            </div>
         </div><!--/row-->
       </div><!--/content-->
 

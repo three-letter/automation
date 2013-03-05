@@ -1,0 +1,44 @@
+<testcase>
+<!-- test host  -->
+  <host>
+		http://10.10.221.116/videoref/get_ref.json?
+	</host>
+	<cases>
+		
+		<case>
+			<param name="vid">200</param>
+			<result>
+				<type>constant</type>
+				<source>json</source>
+				<value>93</value>
+			</result>
+			<desc>normal case</desc>
+			<fact>ref</fact>
+		</case>
+
+		<case>
+			<param name="vid">0</param>
+			<param name="cate">1</param>
+			<result>
+				<type>db</type>
+				<source>vd</source>
+				<value>select ref from t_video where pk_video=200</value>
+			</result>
+			<desc>invalid vid case</desc>
+			<fact>desc</fact>
+		</case>
+		
+		<case>
+			<param name="vid">2</param>
+			<result name="code">
+				<type>page</type>
+				<source>http://www.youku.com</source>
+				<value>title>(.*)/title</value>
+			</result>
+			<desc>no vid case</desc>
+			<fact>ref</fact>
+		</case>
+
+	</cases>
+
+</testcase>

@@ -1,0 +1,21 @@
+p2p{
+    vid 107645364,106223915;
+}
+p2p{
+   dma_code 4808,4837,65532;
+   area_code 11,-1102,1301,3701,3702,4101,2101,2102,2201,2301;
+   category 99,86,87,98,103,102;
+   p2p_partner ss,yk;
+}
+p2p{
+   dma_code 4808,4837;
+   area_code 11,-1102;
+   category 99,86,87,98,103,102,104;
+   p2p_partner ss,yk;
+}
+
+
+tudou_cdn{
+   dma_code 4837;
+   area_code 12;
+}

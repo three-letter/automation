@@ -1,0 +1,199 @@
+
+    
+<form method="post" class="form-horizontal" action="http://10.103.25.22/playpolicy/policy/insert.json" accept-charset="UTF-8">
+     
+  <fieldset>
+    <legend>添加播控策略</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">policyname</label>
+      <div class="controls">
+        <%= text_field_tag "policyname", "", :class => "input-small" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">policydesc</label>
+      <div class="controls">
+        <%= text_field_tag "policydesc", "", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">site_disabled</label>
+      <div class="controls">
+        <%= select_tag "site_disabled", options_for_select([["", ""], ["优酷", "youku"], ["土豆", "tudou"]]) %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">area_disabled</label>
+      <div class="controls">
+        <%= select_tag "area_disabled", options_for_select([["", ""], ["北京禁播", "bj"], ["核心城市禁播，上广深", "leve10"], ["一线城市禁播", "leve11"], ["二线城市禁播", "leve12"], ["香港禁播", "hk"], ["台湾禁播", "tw"], ["国外所有地区", "abroad"], ["美国禁播", "us"], ["韩国禁播", "kr"], ["日本禁播", "jp"]])%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">device_disabled</label>
+      <div class="controls">
+        <%= text_field_tag "device_disabled", "", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">ua_disabled</label>
+      <div class="controls">
+        <%= select_tag "ua_disabled", options_for_select([["", ""], ["禁Web", "Web"], ["禁App", "App"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">os_disabled</label>
+      <div class="controls">
+        <%= select_tag "os_disabled", options_for_select([["", ""], ["禁Windows", "windows"], ["禁iOS", "iOS"], ["禁Android", "Android"], ["禁MacOS", "MacOS"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">time_disabled</label>
+      <div class="controls">
+        <%= select_tag "time_disabled", options_for_select([["", ""], ["白天", "day"], ["晚上", "night"], ["工作日", "workday"], ["周末", "weekend"], ["节假日", "holiday"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">wkey</label>
+      <div class="controls">
+        <%= text_field_tag "wkey", "abc", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+
+  </fieldset>
+</form>
+
+
+
+
+<form method="post" class="form-horizontal" action="http://10.103.25.22/playpolicy/policy/update.json" accept-charset="UTF-8">
+     
+  <fieldset>
+    <legend>添加播控策略</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">policyid</label>
+      <div class="controls">
+        <%= text_field_tag "policyid", "", :class => "input-small" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">policyname</label>
+      <div class="controls">
+        <%= text_field_tag "policyname", "", :class => "input-small" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">policydesc</label>
+      <div class="controls">
+        <%= text_field_tag "policydesc", "", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">site_disabled</label>
+      <div class="controls">
+        <%= select_tag "site_disabled", options_for_select([["", ""], ["优酷", "youku"], ["土豆", "tudou"]]) %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">area_disabled</label>
+      <div class="controls">
+        <%= select_tag "area_disabled", options_for_select([["", ""], ["北京禁播", "bj"], ["核心城市禁播，上广深", "leve10"], ["一线城市禁播", "leve11"], ["二线城市禁播", "leve12"], ["香港禁播", "hk"], ["台湾禁播", "tw"], ["国外所有地区", "abroad"], ["美国禁播", "us"], ["韩国禁播", "kr"], ["日本禁播", "jp"]])%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">device_disabled</label>
+      <div class="controls">
+        <%= text_field_tag "device_disabled", "", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">ua_disabled</label>
+      <div class="controls">
+        <%= select_tag "ua_disabled", options_for_select([["", ""], ["禁Web", "Web"], ["禁App", "App"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">os_disabled</label>
+      <div class="controls">
+        <%= select_tag "os_disabled", options_for_select([["", ""], ["禁Windows", "windows"], ["禁iOS", "iOS"], ["禁Android", "Android"], ["禁MacOS", "MacOS"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">time_disabled</label>
+      <div class="controls">
+        <%= select_tag "time_disabled", options_for_select([["", ""], ["白天", "day"], ["晚上", "night"], ["工作日", "workday"], ["周末", "weekend"], ["节假日", "holiday"]]) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">wkey</label>
+      <div class="controls">
+        <%= text_field_tag "wkey", "abc", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+
+  </fieldset>
+</form>
+
+
+
+<form method="post" class="form-horizontal" action="http://10.103.25.22/playpolicy/policy/set_state.json" accept-charset="UTF-8">
+     
+  <fieldset>
+    <legend>设置播控策略状态</legend>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">policyid</label>
+      <div class="controls">
+        <%= text_field_tag "policyid", "", :class => "input-small" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="input01">state</label>
+      <div class="controls">
+        <%= text_field_tag "state", "", :class => "input-small" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="input01">wkey</label>
+      <div class="controls">
+        <%= text_field_tag "wkey", "", :class => "input-small" %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+    <button class="btn btn-primary" type="submit">确定</button>
+    <button class="btn">取消</button>
+    </div>
+
+  </fieldset>
+</form>
